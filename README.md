@@ -1,7 +1,5 @@
 # Hybrid Support Bot (Advanced RAG) – BMW X5 Owner’s Manual
 
-This project is my submission for the **AI & Automation Internship Selection Challenge – Option 1: “The Hybrid” Support Bot (Advanced RAG)**.
-
 It implements a Retrieval-Augmented Generation (RAG) support assistant over the **BMW X5 Owner’s Manual (2025)** using:
 
 - ✅ Local LLM (via **Ollama** – `llama3`)
@@ -16,7 +14,7 @@ It implements a Retrieval-Augmented Generation (RAG) support assistant over the 
 ## 📚 Problem Statement (Option 1 – “The Hybrid” Support Bot)
 
 Goal:  
-Build a support bot that can accurately answer user questions using a **technical manual PDF** (BMW X5 Owner’s Manual) with:
+Build a support bot that can accurately answer user questions using a  (BMW X5 Owner’s Manual) with:
 
 - Structured ingestion pipeline (one-time)
 - Hybrid search: **metadata (chapter) filter + vector similarity**
@@ -24,9 +22,7 @@ Build a support bot that can accurately answer user questions using a **technica
 - Tracking retrieval latency & model generation latency
 - Graceful handling of unknown questions
 
----
-
-## 🧠 What the Bot Can Do
+ What the Bot Can Do
 
 Given a question like:
 
@@ -124,9 +120,6 @@ Check installed models:
 
 ollama list
 
-
-You should see llama3 and nomic-embed-text in the list.
-
 🧩 Ingestion Pipeline (One-Time Step)
 
 This step:
@@ -143,21 +136,6 @@ Sends chunks to Ollama (nomic-embed-text) to get embeddings
 
 Stores chunks + embeddings + metadata in ChromaDB
 
-Run:
-
-venv\Scripts\activate   # if not already active
-python -m ingestion.build_index
-
-
-You should see logs like:
-
-[INGEST] Parsing PDF...
-[INGEST] Line entries: 21036
-[INGEST] Building chunks...
-[INGEST] Chunks: 1475
-[INGEST] Generating embeddings and storing in Chroma...
-[INGEST] Embedding time: XX.XX seconds
-[INGEST] Done. Index ready.
 
 
 After this, the enbeddings/ folder will contain the Chroma DB.
@@ -176,7 +154,6 @@ INFO:     Uvicorn running on http://127.0.0.1:8001
 
 💬 Querying the Support Bot
 
-Open your browser and go to:
 
 http://127.0.0.1:8001/docs
 
@@ -285,5 +262,6 @@ LLM-based router to select chapter instead of simple keyword matching
 Simple web frontend (React/HTML) on top of the FastAPI backend
 
 Caching frequent queries
+
 
 Better error handling around Ollama / Chroma failures
